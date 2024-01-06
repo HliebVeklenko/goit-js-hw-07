@@ -30,28 +30,15 @@ const images = [
 
 const list = document.querySelector('.gallery');
 
-const prototypeString =     `<li class = "image">
-                                <img src = "${images[0].url}" alt = "${images[0].alt}"></img>
-                             </li>
+const elements = [];
+for (let i = 0; i < images.length; i++){
+  const li = document.createElement('li');
+  li.classList.add('image');
+  const img = document.createElement('img');
+  img.setAttribute('src', images[i].url);
+  img.setAttribute('alt', images[i].alt);
+  li.append(img);
+  elements[i] = li;
+}
 
-                             <li class = "image">
-                                <img src = "${images[1].url}" alt = "${images[1].alt}"></img>
-                             </li>
-
-                             <li class = "image">
-                                <img src = "${images[2].url}" alt = "${images[2].alt}"></img>
-                             </li>
-
-                             <li class = "image">
-                                <img src = "${images[3].url}" alt = "${images[3].alt}"></img>
-                             </li>
-
-                             <li class = "image">
-                                <img src = "${images[4].url}" alt = "${images[4].alt}"></img>
-                             </li>
-
-                             <li class = "image">
-                                <img src = "${images[5].url}" alt = "${images[5].alt}"></img>
-                             </li>`;
-                          
-  list.insertAdjacentHTML("afterbegin", prototypeString);
+list.append(...elements);
